@@ -21,30 +21,29 @@ class LogisticRegression:
             epoch_loss = []
             wd = np.zeros_like(self.W)
 
-            for i in range(x.shape[0]//batch_size):
-                start = i*batch_size
-                end = start + batch_size
-                x_batch = x[start:end]  #x_batch.shape = (10,7)
-                y_batch = y[start:end].reshape(-1,1) #y_batch.shape = (10,1)
-                y_predicted = self.forward(x_batch) #y_predicted.shape = (10,1)
-                err = (y_predicted - y_batch) #err.shape = (10,1)
+            for j in range(x.shape[0]//batch_size):
+                idx = j*batch_size
+                x_batch = x[idx:idx+batch_size] 
+                y_batch = y[idx:idx+batch_size] #y_batch.shape = (10,)
+                y_predicted = self.forward(x_batch) #y_predicted.shape = (10,)
+                err = (y_predicted - y_batch) #err.shape = (10,)
                     
                 #배치 손실 구하기
                 loss_arr = np.where(y_batch==1, -np.log(y_predicted+epsilon), -np.log(1-y_predicted+epsilon)) #loss_arr.shape = (10,)
                 batch_loss = np.mean(loss_arr)
                 epoch_loss.append(batch_loss)
 
-                #가중치 업데이트
-                wd = (np.dot(x_batch.T, err) / batch_size) #wd.shpae = (7,1)
+                #가중치 업데이트 
+                wd = (np.dot(x_batch.T, err) / batch_size).reshape(-1, 1) 
                 self.W = optim.update(self.W, wd, lr)
 
             #나머지 데이터로 학습하기
             if int(x.shape[0]%batch_size) != 0:
-                start = int(x.shape[0]//batch_size)*batch_size
-                x_batch = x[start:]
-                y_batch = y[start:].reshape(-1,1)
+                idx = int(x.shape[0]//batch_size)*batch_size
+                x_batch = x[idx:]
+                y_batch = y[idx:]
                 y_predicted = self.forward(x_batch)
-                err = (y_predicted - y_batch)
+                err = (y_predicted-y_batch)
 
                 #배치 손실 구하기
                 loss_arr = np.where(y_batch==1, -np.log(y_predicted+epsilon), -np.log(1-y_predicted+epsilon))
@@ -52,15 +51,14 @@ class LogisticRegression:
                 epoch_loss.append(batch_loss)
 
                 #가중치 업데이트
-                last_batch_size = x_batch.shape[0]
-                wd = (np.dot(x_batch.T, err) / last_batch_size)
+                wd = (np.dot(x_batch.T, err) / batch_size).reshape(-1, 1)  
                 self.W = optim.update(self.W, wd, lr)
 
-            #에폭 손실 구하기
+            #에폭당 손실 평균 구하기
             loss = np.mean(np.array(epoch_loss))
 
             if epoch%100==0:
-                print("cost {}, batch_size {}, epoch {}".format(loss, batch_size, epoch))
+                print("cost {}, batch_size {}, epoch {}".format(loss,batch_size,epoch))
         # ============================================================
         return loss
 
@@ -74,10 +72,9 @@ class LogisticRegression:
         # Otherwise, it predicts as 0
 
         # ========================= EDIT HERE ========================
-        dot_ = np.dot(x,self.W) #dot_.shpae = (10,1)
-        sigmoid = self._sigmoid(dot_) #sigmoid.shape = (10,1)
-        #y_predicted = np.where(sigmoid>=threshold, 1, 0).squeeze() #y_predicted.shape = (10,)
-        y_predicted = np.where(sigmoid>=threshold, 1, 0)
+        dot_ = np.dot(x,self.W) 
+        sigmoid = self._sigmoid(dot_)
+        y_predicted = np.where(sigmoid>=threshold, 1, 0).squeeze() #y_predicted.shape = (10,)
         # ============================================================
 
         return y_predicted

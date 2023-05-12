@@ -7,7 +7,7 @@ class Perceptron:
 
     def train(self, x, y, epochs, batch_size, lr, optim):
         loss = None   # loss of final epoch
-        # ========================= Example ==========================
+        # ========================= EDIT HERE ==========================
 
         # Train should be done for 'epochs' times.
         # The function 'train' should return the loss of final epoch.
@@ -39,7 +39,7 @@ class Perceptron:
 
     def forward(self, x):
         y_predicted = None
-        # ========================= Example ========================
+        # ========================= EDIT HERE ========================
         # Evaluation Function
         # Given the input 'x', the function should return prediction for 'x'
         # The model predicts the label as 1 if the output is positive or equal to 0.
@@ -53,7 +53,7 @@ class Perceptron:
     def _sign(self, x):
         # Sign Function
         # The function returns the sign of 'x'
-        # ========================= Example ========================
+        # ========================= EDIT HERE ========================
         x[x>=0] = 1
         x[x<0] = -1
         sign = x
