@@ -9,7 +9,23 @@
 
   ## 📌 Introduction
   This repository is a collection of lab practices where I implemented Activation Layers, Machine Learning, Deep Learning models during the <i><strong>Introduction of Deep Neural Networks</strong></i> course.<br/><br/>
+
   
+  ## 💡 What I learned
+  - Machine Learning Basics, Deep Neural Networks Basics
+  - Overfitting and Model Generalization
+  - Evaluation Protocol and Metrics
+  - Backpropagation Algorithm
+  - Optimization
+  - Convolutional Neural Networks (LeNet-5, AlexNet, VGGNet, GoogLeNet, ResNet)
+  - Recurrent Neural Networks (LSTM, Seq2Seq, Attention Mechanism, BERT, Transformer)
+  - Deep Gernerative Models
+  - Generative Adversarial Networks
+  - How to implement Activiaton Layers, ML alogorithms with Numpy
+  - How to implement models with PyTorch
+  <br/>
+  
+  ## 💻 Contents
   - DNN_HW1
     - Implement **Linear Regression** with Numpy library (models/LinearRegression.py)
     - Implement **Logistic Regression** Numpy library (models/LogisticRegression.py)
@@ -50,17 +66,6 @@
   <br/>
   <br/>
   
-  ## 💡 What I learned
-  - Machine Learning Basics, Deep Neural Networks Basics
-  - Overfitting and Model Generalization
-  - Evaluation Protocol and Metrics
-  - Backpropagation Algorithm
-  - Optimization
-  - Convolutional Neural Networks (LeNet-5, AlexNet, VGGNet, GoogLeNet, ResNet)
-  - Recurrent Neural Networks (LSTM, Seq2Seq, Attention Mechanism, BERT, Transformer)
-  - Deep Gernerative Models
-  - Generative Adversarial Networks
-  - How to implement Activiaton Layers, ML alogorithms with Numpy
-  - How to implement models with PyTorch
+
 </div>
 
