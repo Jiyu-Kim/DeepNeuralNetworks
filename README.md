@@ -38,7 +38,6 @@
     - Conduct **Semi-supervised learning for image classification**.
     - Build a machine learning model for image classification, where a few data are only labeled and most of the data are unlabeled.
   <br/>
-  <br/>
   
   ## 🔧 Tech Stack
   ### Language
